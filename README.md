@@ -4,6 +4,7 @@ I've been learning functional programming, but don't know what all the terminolo
 ### Table of Contents
 * [Currying](#currying)
 * [Partial Application](#partial-application)
+* [Higher Order Functions](#higher-order-functions)
 * [Pattern Matching](#pattern-matching)
 * [Recursion](#recursion)
 * [Functor](#functor)
@@ -26,6 +27,40 @@ add : Int -> Int -> Int
 add a b = a + b
 add5 = add 5
 add5 10 -- 15
+```
+
+### Higher Order functions
+Higher order functions are those that take functions are arguments. A function is also considered a higher order function if it returns a function.
+##### Return Function from Function example
+
+*example*
+```elm
+-- see add5 = add 5 in Partial Application example above
+```
+
+##### Function as Argument Example
+*example*
+```elm
+type alias User =
+    { firstName : String
+    , lastName : String
+    , unreadMessages : Int
+    }
+
+user : User
+user = { firstName = "Rob", lastName = "Bethencourt", unreadMessages = 3 }
+
+
+hello : User -> String
+hello user =
+    "Hello, " ++ user.firstName
+
+notifyUnredMessages : (User -> String) -> User -> String
+notifyUnredMessages greeting user =
+    greeting user
+    ++ ". You have "
+    ++ (toString user.unreadMessages)
+    ++ " unread messages."
 ```
 
 ### Pattern Matching
