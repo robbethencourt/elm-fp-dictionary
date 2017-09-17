@@ -1,5 +1,5 @@
 # elm-fp-dictionary
-I've been learning functional programming, but don't know what all the terminology. I'm using this repo to define functional programming terms with examples in elm so I can quickly reference them.
+I've been learning functional programming, but don't know what all the terminology means. I'm using this repo to define functional programming terms with examples in elm so I can quickly reference them. Some of the definitions may be incomplete as this is a learning tool.
 
 ### Table of Contents
 * [Currying](#currying)
@@ -10,6 +10,7 @@ I've been learning functional programming, but don't know what all the terminolo
 * [Recursion](#recursion)
 * [Functor](#functor)
 * [Pointed Functor](#pointed-functor)
+* [Monoid](#monoid)
 
 ---
 
@@ -223,7 +224,7 @@ combineUsersWithCompose users =
 ### Pointed Functor
 A pointed functor is a functor with an of method. This means we can take a value, and wrap it in a functor. In elm, lists have the singleton function that takes a value and wraps it in a List, which in elm is a functor.
 
-*I'm still a little unclear if this is the entire story of pointed functors.**
+*I'm still a little unclear if this is the entire story behind pointed functors.*
 
 The value of a pointed functor seems to be that because this value is now wrapped in a functor, it allows you to map over the value returned.
 
@@ -233,3 +234,34 @@ List.singleton 1 -- [1]
 List.singleton "hello" -- ["hello"]
 List.singleton {firstName = "Rob", lastName = "Bethencourt"} -- [{firstName = "Rob", lastName = "Bethencourt"}]
 ```
+
+---
+
+### Monoid
+A monoid has two characteristics. It needs to be able to preserve identity and be associative. Associativity is not to be confused with inverse, which is not a characteristic of a monoid.
+
+##### Preserving Identity
+Lists, Ints and Strings in elm hold to this characteristic.
+
+*example*
+
+```elm
+List.append [] ([1, 2, 3]) -- [1, 2, 3]
+77 + 0 -- 77
+85 * 1 -- 85
+String.append "" "I'm a monoid" -- "I'm a monoid"
+```
+
+##### Associativity
+Lists, Ints and Strings also adhere to associativity. Meaning the grouping of operations doesn't affect the result.
+
+*example*
+
+```elm
+List.append [1, 2, 3] (List.append [4, 5, 6] [7, 8, 9]) === List.append (List.append [1, 2, 3] [4, 5, 6]) [7, 8, 9]
+1 + (2 + 3) == (1 + 2) + 3
+1 * (2 * 3) == (1 * 2) * 3
+"I'm " ++ ("a " ++ "monoid") == ("I'm " ++ "a ") ++ "monoid"
+```
+
+*there's more going on here. I need to find out how knowing these characteristic can be used in meaningful ways*
