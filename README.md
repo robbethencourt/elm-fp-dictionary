@@ -9,6 +9,7 @@ I've been learning functional programming, but don't know what all the terminolo
 * [Pattern Matching](#pattern-matching)
 * [Recursion](#recursion)
 * [Functor](#functor)
+* [Pointed Functor](#pointed-functor)
 
 ---
 
@@ -215,4 +216,20 @@ combineUsersWithCompose : List User -> List String
 combineUsersWithCompose users =
     users
         |> List.map (\user -> (sayItLoud (fullName user)))
+```
+
+---
+
+### Pointed Functor
+A pointed functor is a functor with an of method. This means we can take a value, and wrap it in a functor. In elm, lists have the singleton function that takes a value and wraps it in a List, which in elm is a functor.
+
+*I'm still a little unclear if this is the entire story of pointed functors.**
+
+The value of a pointed functor seems to be that because this value is now wrapped in a functor, it allows you to map over the value returned.
+
+*example*
+```elm
+List.singleton 1 -- [1]
+List.singleton "hello" -- ["hello"]
+List.singleton {firstName = "Rob", lastName = "Bethencourt"} -- [{firstName = "Rob", lastName = "Bethencourt"}]
 ```
