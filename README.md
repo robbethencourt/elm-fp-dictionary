@@ -5,7 +5,7 @@ I've been learning functional programming, but don't know what all the terminolo
 * [Currying](#currying)
 * [Partial Application](#partial-application)
 * [Higher Order Function](#higher-order-function)
-* [Lambda](#Lambda)
+* [Lambda](#lambda)
 * [Pattern Matching](#pattern-matching)
 * [Recursion](#recursion)
 * [Functor](#functor)
