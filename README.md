@@ -4,10 +4,13 @@ I've been learning functional programming, but don't know what all the terminolo
 ### Table of Contents
 * [Currying](#currying)
 * [Partial Application](#partial-application)
-* [Higher Order Functions](#higher-order-functions)
+* [Higher Order Function](#higher-order-function)
+* [Lambda](#Lambda)
 * [Pattern Matching](#pattern-matching)
 * [Recursion](#recursion)
 * [Functor](#functor)
+
+---
 
 ### Currying
 A curried function is one that has been converted from a function that requires taking all arguments at once, to a function that is capable of taking one argument at a time, and returning a function capable of taking the remaining arguments. In elm all functions are curried! This means that all functions can be [partially applied](#partial-application)
@@ -17,6 +20,8 @@ A curried function is one that has been converted from a function that requires 
 ```elm
 -- all functions are curried in elm! Hooray, no extra work!
 ```
+
+---
 
 ### Partial Application
 Partial application can be used when a function allows one argument to be passed at a time. In elm, all functions can be partially applied as all functions are curried. When less than all the arguments are applied to a function, that function returns a new function that takes the remaining arguments.
@@ -29,8 +34,10 @@ add5 = add 5
 add5 10 -- 15
 ```
 
-### Higher Order functions
-Higher order functions are those that take functions are arguments. A function is also considered a higher order function if it returns a function.
+---
+
+### Higher Order function
+A higher order functions is one that takes a function as an argument. A function is also considered a higher order function if it returns a function.
 ##### Return Function from Function example
 
 *example*
@@ -62,6 +69,24 @@ notifyUnredMessages greeting user =
     ++ (toString user.unreadMessages)
     ++ " unread messages."
 ```
+
+---
+
+### Lambda
+A lambda is an anonymous function. (a function without a name) These functions are usually passed as arguments to [higher order functions](#higher-order-function). We can see these used most often as the first argument to the List.map and List.filter functions in elm.
+
+In elm a lambda starts with a backslash \ and then you list the arguments the lambda takes. The right side of the arrow -> is where you write the function body.
+
+```elm
+myArray : List Int
+myArray = List.range 1 5
+
+List.map (\a -> a + 1) myArray
+
+List.filter (\a -> a > 2) myArray
+```
+
+---
 
 ### Pattern Matching
 Pattern matching allows us to check the pattern of a value and return something based on the pattern that is matched. Below are two simple examples we can build upon when we use [pattern matching](#pattern-matching) with [recursion](#recursion).
@@ -110,6 +135,8 @@ The h :: rest syntax represents a list with two or more items. The h represents 
 
 Also, We could have used the wildcard _ symbol instead of h :: rest in this scenario, but this gives us a look at the syntax for using [pattern matching](#pattern-matching) with [recursion](#recursion).
 
+---
+
 ### Recursion
 
 Recursion is when a function calls itself. In elm we can use pattern matching to continue calling the function, or match a pattern to return a final result. We can recreate javascript's reduce with pattern matching and recursion to return the total of a list of integers.
@@ -128,6 +155,8 @@ reduceEx val list =
 ```
 
 Because the last thing our reduceEx function does is call itself, this function is considered to have proper tail call optimization, or tail call elimination. When we write a recursive function this way in elm, it creates a while loop in our javaScript code to optimize for performance.
+
+---
 
 ### Functor
 
